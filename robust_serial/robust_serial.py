@@ -122,10 +122,10 @@ def decode_order(f, byte, debug=False):
             cpu_temp = read_i32(f)
             msg = "cpu temp {}".format(int8_t)
         elif order == Order.HDC1080_TEMP:
-            cpu_temp = read_i16(f)
+            hdc_temp = read_i32(f)
             msg = "hdc temp {}".format(int8_t)
         elif order == Order.HDC1080_HUMIDITY:
-            cpu_temp = read_i16(f)
+            hdc_humi = read_i32(f)
             msg = "hdc humi {}".format(int8_t)
         else:
             msg = ""
