@@ -17,6 +17,10 @@ class Order(Enum):
     ERROR = 4
     RECEIVED = 5
     STOP = 6
+    SYSTEM_EPOCH = 7
+    CPU_TEMP = 8
+    HDC1080_TEMP = 9
+    HDC1080_HUMIDITY = 10
 
 def read_order(f):
     """
@@ -111,6 +115,18 @@ def decode_order(f, byte, debug=False):
             msg = "RECEIVED"
         elif order == Order.STOP:
             msg = "STOP"
+        elif order == Order.SYSTEM_EPOCH:
+            system_epoch = read_i32(f)
+            msg = "epoch {}".format(int8_t)
+        elif order == Order.CPU_TEMP:
+            cpu_temp = read_i32(f)
+            msg = "cpu temp {}".format(int8_t)
+        elif order == Order.HDC1080_TEMP:
+            cpu_temp = read_i16(f)
+            msg = "hdc temp {}".format(int8_t)
+        elif order == Order.HDC1080_HUMIDITY:
+            cpu_temp = read_i16(f)
+            msg = "hdc humi {}".format(int8_t)
         else:
             msg = ""
             print("Unknown Order", byte)
